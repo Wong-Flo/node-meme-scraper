@@ -8,18 +8,19 @@ if (!fs.existsSync('./memes')) {
 }
 
 const url = 'https://memegen-link-examples-upleveled.netlify.app/';
-let emptyArr = [];
+const emptyArr = [];
 // connecting to the url
 await axios.get(url).then((response) => {
   const $ = cheerio.load(response.data);
   // getting the images with id #images from html
   const imgUrl = '#images img';
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   $(imgUrl).each((_, img) => {
     // pushing URLS into emptyArr
     emptyArr.push($(img).attr('src'));
     return emptyArr;
   });
-  //slicing all URL into 10
+  // slicing all URL into 10
   const tenImg = emptyArr.slice(0, 10);
 
   // downloading images and saving into memes folder
