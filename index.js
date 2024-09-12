@@ -14,7 +14,7 @@ await axios.get(url).then((response) => {
   const $ = cheerio.load(response.data);
   // getting the images with id #images from html
   const imgUrl = '#images img';
-  // eslint-disable-next-line
+
   $(imgUrl).each((underScore, img) => {
     // pushing URLS into emptyArr
     emptyArr.push($(img).attr('src'));
