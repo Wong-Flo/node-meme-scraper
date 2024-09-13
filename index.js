@@ -27,8 +27,14 @@ await axios.get(url).then((response) => {
   for (let i = 0; i < 10; i++) {
     const images = tenImg[i];
     https.get(images, (res) => {
-      const path = `memesFolder/${i + 1}.jpg`;
-      res.pipe(fs.createWriteStream(path));
+      if (i < 9) {
+        const path = `memesFolder/0${i + 1}.jpg`;
+        res.pipe(fs.createWriteStream(path));
+      } else {
+        const path = `memesFolder/${i + 1}.jpg`;
+
+        res.pipe(fs.createWriteStream(path));
+      }
     });
   }
   console.log('Download Completed Good Job!');
