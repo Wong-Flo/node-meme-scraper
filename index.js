@@ -3,8 +3,8 @@ import https from 'node:https';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-if (!fs.existsSync('./memes')) {
-  fs.mkdirSync('./memes');
+if (!fs.existsSync('memesFolder')) {
+  fs.mkdirSync('memesFolder');
 }
 
 const url = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -27,7 +27,7 @@ await axios.get(url).then((response) => {
   for (let i = 0; i < 10; i++) {
     const images = tenImg[i];
     https.get(images, (res) => {
-      const path = `memes/0${i + 1}.jpg`;
+      const path = `memesFolder/${i + 1}.jpg`;
       res.pipe(fs.createWriteStream(path));
     });
   }
